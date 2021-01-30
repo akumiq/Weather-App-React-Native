@@ -4,6 +4,7 @@ import {StyleSheet, StatusBar, View} from 'react-native';
 import TemperatureUnit from '../src/components/TemperatureUnitComponent';
 import ReloadIcon from '../src/components/ReloadIconComponent';
 import WeatherInfo from '../src/components/WeatherInfoComponent';
+import WeatherDetail from '../src/components/WeatherDetailComponent';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
 
       <View style={styles.content}>
         <WeatherInfo />
+        <WeatherDetail />
       </View>
     </View>
   );
@@ -38,5 +40,6 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     justifyContent: 'center',
+    paddingTop: 40,
   },
 });
