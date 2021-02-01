@@ -2,7 +2,7 @@ import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import IconReload from 'react-native-vector-icons/AntDesign';
 
-import {colors} from '../utils/Colors';
+import {colors} from '../../../utils/Colors';
 
 const {SECONDARY_COLOR} = colors;
 

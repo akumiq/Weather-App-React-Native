@@ -5,8 +5,8 @@ import Water from 'react-native-vector-icons/MaterialCommunityIcons';
 import WetaherWindy from 'react-native-vector-icons/MaterialCommunityIcons';
 import Speedometer from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import WeatherDetailBox from '../atom/WeatherDetailBox';
-import {colors} from '../utils/Colors';
+import WeatherDetailBox from '../../atom/WeatherDetailBox';
+import {colors} from '../../../utils/Colors';
 
 const {SECONDARY_COLOR} = colors;
 

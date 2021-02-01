@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Weather from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {colors} from '../utils/Colors';
+import {colors} from '../../../utils/Colors';
 
 const {SECONDARY_COLOR} = colors;
 
