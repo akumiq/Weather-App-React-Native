@@ -2,7 +2,11 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Weather from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const WeatherInfo = () => {
+import {colors} from '../utils/Colors';
+
+const {SECONDARY_COLOR} = colors;
+
+const WeatherInfoComponent = () => {
   return (
     <View style={styles.weatherInfo}>
       <Text>Mountain View</Text>
@@ -14,7 +18,7 @@ const WeatherInfo = () => {
   );
 };
 
-export default WeatherInfo;
+export default WeatherInfoComponent;
 
 const styles = StyleSheet.create({
   weatherInfo: {
@@ -29,11 +33,10 @@ const styles = StyleSheet.create({
   },
   textPrimary: {
     fontSize: 40,
-    color: '#ff304f',
+    color: SECONDARY_COLOR,
   },
   textSecondary: {
     fontSize: 20,
-    color: '#002651',
     fontWeight: '500',
     marginTop: 10,
   },
