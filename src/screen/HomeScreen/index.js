@@ -9,7 +9,7 @@ import {colors} from '../../utils/Colors';
 
 const {PRIMARY_COLOR} = colors;
 
-const App = () => {
+const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <StatusBar
@@ -31,7 +31,7 @@ const App = () => {
   );
 };
 
-export default App;
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
