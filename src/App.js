@@ -7,7 +7,7 @@ import HomeScreen from '../src/screen/HomeScreen';
 
 const App = () => {
   const [initialRegion, setInitialRegion] = useState(null);
-  const [unitsSystem] = useState('');
+  const [unitsSystem, setUnitsSystem] = useState('metric');
   const [currentWeather, setCurrentWeather] = useState(null);
   const [currentWeatherDetails, setCurrentWeatherDetails] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -72,6 +72,7 @@ const App = () => {
   return (
     <HomeScreen
       unitsSystem={unitsSystem}
+      setUnitsSystem={setUnitsSystem}
       currentWeather={currentWeather}
       currentWeatherDetails={currentWeatherDetails}
       errorMessage={errorMessage}
