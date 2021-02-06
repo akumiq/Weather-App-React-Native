@@ -7,6 +7,7 @@ import HomeScreen from '../src/screen/HomeScreen';
 
 const App = () => {
   const [initialRegion, setInitialRegion] = useState(null);
+  const [unitsSystem] = useState('');
   const [currentWeather, setCurrentWeather] = useState(null);
   const [currentWeatherDetails, setCurrentWeatherDetails] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -20,7 +21,8 @@ const App = () => {
 
   useEffect(() => {
     load();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [unitsSystem]);
 
   const requestLocationPermission = async () => {
     if (Platform.OS === 'android') {
@@ -55,7 +57,7 @@ const App = () => {
 
   const load = async () => {
     const {latitude, longitude} = initialRegion;
-    const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}`;
+    const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`;
     const response = await fetch(weatherUrl);
     const result = await response.json();
 
@@ -69,6 +71,7 @@ const App = () => {
 
   return (
     <HomeScreen
+      unitsSystem={unitsSystem}
       currentWeather={currentWeather}
       currentWeatherDetails={currentWeatherDetails}
       errorMessage={errorMessage}

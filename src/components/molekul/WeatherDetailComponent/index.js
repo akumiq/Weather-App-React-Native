@@ -10,8 +10,22 @@ import {colors} from '../../../utils/Colors';
 
 const {SECONDARY_COLOR} = colors;
 
-const WeatherDetailComponent = () => {
+const WeatherDetailComponent = ({
+  currentWeather,
+  currentWeatherDetails,
+  unitsSystem,
+}) => {
   const borderTopWidth = 1;
+
+  const {
+    main: {feels_like, humidity, pressure},
+    wind: {speed},
+  } = currentWeatherDetails;
+
+  const windSpeed =
+    unitsSystem === 'metric'
+      ? `${Math.round(speed)} m/s`
+      : `${Math.round(speed)} miles/h`;
 
   return (
     <View style={styles.weatherDetails}>
@@ -25,13 +39,13 @@ const WeatherDetailComponent = () => {
             />
           }
           textPrimary="Feels Like :"
-          textSecondary="43.39°"
+          textSecondary={`${feels_like}°`}
         />
 
         <WeatherDetailBox
           icon={<Water name="water" size={30} color={SECONDARY_COLOR} />}
           textPrimary="Humidity :"
-          textSecondary="93%"
+          textSecondary={`${humidity}%`}
         />
       </View>
 
@@ -49,7 +63,7 @@ const WeatherDetailComponent = () => {
             />
           }
           textPrimary="Wind Speed :"
-          textSecondary="2 miles/h"
+          textSecondary={windSpeed}
         />
 
         <WeatherDetailBox
@@ -57,7 +71,7 @@ const WeatherDetailComponent = () => {
             <Speedometer name="speedometer" size={30} color={SECONDARY_COLOR} />
           }
           textPrimary="Pressure :"
-          textSecondary="1025 hPa"
+          textSecondary={`${pressure} hPa`}
         />
       </View>
     </View>
