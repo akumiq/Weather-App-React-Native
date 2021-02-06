@@ -9,7 +9,7 @@ import {colors} from '../../utils/Colors';
 
 const {PRIMARY_COLOR} = colors;
 
-const HomeScreen = () => {
+const HomeScreen = ({currentWeather, currentWeatherDetails}) => {
   return (
     <View style={styles.container}>
       <StatusBar
@@ -24,7 +24,11 @@ const HomeScreen = () => {
       </View>
 
       <View style={styles.content}>
-        <WeatherInfoComponent />
+        <WeatherInfoComponent
+          currentWeather={currentWeather}
+          currentWeatherDetails={currentWeatherDetails}
+        />
+
         <WeatherDetailComponent />
       </View>
     </View>

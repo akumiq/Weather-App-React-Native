@@ -1,19 +1,28 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import Weather from 'react-native-vector-icons/MaterialCommunityIcons';
+import {View, Text, StyleSheet, Image} from 'react-native';
 
 import {colors} from '../../../utils/Colors';
 
 const {SECONDARY_COLOR} = colors;
 
-const WeatherInfoComponent = () => {
+const WeatherInfoComponent = ({currentWeather, currentWeatherDetails}) => {
+  const {
+    main: {temp},
+    weather: [details],
+    name,
+  } = currentWeatherDetails;
+
+  const {icon, main, description} = details;
+
+  const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
+
   return (
     <View style={styles.weatherInfo}>
-      <Text>Mountain View</Text>
-      <Weather name="weather-partly-cloudy" size={80} />
-      <Text style={styles.textPrimary}>42.17°</Text>
-      <Text style={styles.weatherDescription}>Overcast Cluds</Text>
-      <Text style={styles.textSecondary}>Clouds</Text>
+      <Text>{name}</Text>
+      <Image style={styles.weatherIcon} source={{uri: iconUrl}} />
+      <Text style={styles.textPrimary}>{temp}°</Text>
+      <Text style={styles.weatherDescription}>{description}</Text>
+      <Text style={styles.textSecondary}>{main}</Text>
     </View>
   );
 };

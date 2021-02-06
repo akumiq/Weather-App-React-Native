@@ -7,22 +7,32 @@ import HomeScreen from '../src/screen/HomeScreen';
 
 const App = () => {
   const [initialRegion, setInitialRegion] = useState(null);
+  const [currentWeather, setCurrentWeather] = useState(null);
+  const [currentWeatherDetails, setCurrentWeatherDetails] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const WEATHER_API_KEY = '36b0c9ddd4504f6c945088f81e9080f4';
+  const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
   useEffect(() => {
     requestLocationPermission();
   });
 
+  useEffect(() => {
+    load();
+  });
+
   const requestLocationPermission = async () => {
     if (Platform.OS === 'android') {
-      var response = await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+      var permission = await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
 
-      if (response === 'granted') {
+      if (permission === 'granted') {
         return locateCurrentPosition();
       }
     } else {
-      var response = await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
+      var permission = await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
 
-      if (response === 'granted') {
+      if (permission === 'granted') {
         return locateCurrentPosition();
       }
     }
@@ -43,7 +53,27 @@ const App = () => {
     );
   };
 
-  return <HomeScreen />;
+  const load = async () => {
+    const {latitude, longitude} = initialRegion;
+    const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}`;
+    const response = await fetch(weatherUrl);
+    const result = await response.json();
+
+    if (response.ok) {
+      setCurrentWeather(result.main.temp);
+      setCurrentWeatherDetails(result);
+    } else {
+      setErrorMessage(result.message);
+    }
+  };
+
+  return (
+    <HomeScreen
+      currentWeather={currentWeather}
+      currentWeatherDetails={currentWeatherDetails}
+      errorMessage={errorMessage}
+    />
+  );
 };
 
 export default App;
