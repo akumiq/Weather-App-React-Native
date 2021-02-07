@@ -5,15 +5,15 @@ import {request, PERMISSIONS} from 'react-native-permissions';
 
 import HomeScreen from '../src/screen/HomeScreen';
 
+const WEATHER_API_KEY = '36b0c9ddd4504f6c945088f81e9080f4';
+const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
+
 const App = () => {
   const [initialRegion, setInitialRegion] = useState(null);
   const [unitsSystem, setUnitsSystem] = useState('metric');
   const [currentWeather, setCurrentWeather] = useState(null);
   const [currentWeatherDetails, setCurrentWeatherDetails] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-
-  const WEATHER_API_KEY = '36b0c9ddd4504f6c945088f81e9080f4';
-  const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
   useEffect(() => {
     requestLocationPermission();
