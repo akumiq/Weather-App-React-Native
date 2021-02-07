@@ -8,13 +8,8 @@ const {SECONDARY_COLOR} = colors;
 
 const ReloadIcon = ({load}) => {
   return (
-    <TouchableOpacity style={styles.reloadIcon}>
-      <IconReload
-        onPress={load}
-        name="reload1"
-        size={20}
-        color={SECONDARY_COLOR}
-      />
+    <TouchableOpacity onPress={load} style={styles.reloadIcon}>
+      <IconReload name="reload1" size={20} color={SECONDARY_COLOR} />
     </TouchableOpacity>
   );
 };

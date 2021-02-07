@@ -56,16 +56,23 @@ const App = () => {
   };
 
   const load = async () => {
-    const {latitude, longitude} = initialRegion;
-    const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`;
-    const response = await fetch(weatherUrl);
-    const result = await response.json();
+    setCurrentWeather(null);
+    setCurrentWeatherDetails(null);
+    setErrorMessage(null);
+    try {
+      const {latitude, longitude} = initialRegion;
+      const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`;
+      const responses = await fetch(weatherUrl);
+      const result = await responses.json();
 
-    if (response.ok) {
-      setCurrentWeather(result.main.temp);
-      setCurrentWeatherDetails(result);
-    } else {
-      setErrorMessage(result.message);
+      if (responses.ok) {
+        setCurrentWeather(result.main.temp);
+        setCurrentWeatherDetails(result);
+      } else {
+        setErrorMessage(result.message);
+      }
+    } catch (error) {
+      setErrorMessage(error.message);
     }
   };
 
@@ -73,6 +80,7 @@ const App = () => {
     <HomeScreen
       unitsSystem={unitsSystem}
       setUnitsSystem={setUnitsSystem}
+      load={load}
       currentWeather={currentWeather}
       currentWeatherDetails={currentWeatherDetails}
       errorMessage={errorMessage}

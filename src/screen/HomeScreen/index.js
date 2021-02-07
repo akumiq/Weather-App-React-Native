@@ -18,6 +18,7 @@ const {PRIMARY_COLOR, SECONDARY_COLOR} = colors;
 const HomeScreen = ({
   unitsSystem,
   setUnitsSystem,
+  load,
   currentWeather,
   currentWeatherDetails,
   errorMessage,
@@ -37,7 +38,7 @@ const HomeScreen = ({
             setUnitsSystem={setUnitsSystem}
           />
 
-          <ReloadIcon />
+          <ReloadIcon load={load} />
         </View>
 
         <View style={styles.content}>
